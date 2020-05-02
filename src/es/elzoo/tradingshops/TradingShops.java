@@ -30,12 +30,6 @@ public class TradingShops extends JavaPlugin {
 	private static Economy economy = null;
 	private static Connection conexion = null;
 	
-	private TradingShops ts;
-	
-	public TradingShops(TradingShops ts) {
-		this.ts = ts;
-	}
-	
 	@Override
 	public void onLoad() {		
 		Plugin wgCheck = Bukkit.getPluginManager().getPlugin("WorldGuard");
@@ -46,14 +40,14 @@ public class TradingShops extends JavaPlugin {
 	
 	@Override
 	public void onEnable() {
-		cadenaConex = "jdbc:sqlite:"+ts.getDataFolder().getAbsolutePath()+"/shops.db";
+		cadenaConex = "jdbc:sqlite:"+getDataFolder().getAbsolutePath()+"/shops.db";
 		
 		this.setupEconomy();		
 		this.crearConfig();
 		
-		ts.getServer().getPluginManager().registerEvents(new EventosTienda(), ts);
-		ts.getServer().getPluginManager().registerEvents(new GUIEventos(), ts);
-		ts.getCommand("tradeshop").setExecutor(new ComandoTienda());
+		getServer().getPluginManager().registerEvents(new EventosTienda(), this);
+		getServer().getPluginManager().registerEvents(new GUIEventos(), this);
+		getCommand("tradeshop").setExecutor(new ComandoTienda());
 		
 		try {
 			conexion = DriverManager.getConnection(cadenaConex);
@@ -63,12 +57,12 @@ public class TradingShops extends JavaPlugin {
 			e.printStackTrace();
 		}
 		
-		Bukkit.getScheduler().scheduleSyncRepeatingTask(ts, () -> {
+		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> {
 			Tienda.tickTiendas();
 		}, 40, 40);
 		
-		Bukkit.getScheduler().scheduleSyncRepeatingTask(ts, () -> {
-			Bukkit.getScheduler().runTaskAsynchronously(ts, () -> {
+		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> {
+			Bukkit.getScheduler().runTaskAsynchronously(this, () -> {
 				Tienda.guardarDatos();
 			});
 		}, 6000, 6000);
@@ -143,11 +137,11 @@ public class TradingShops extends JavaPlugin {
 	}
 	
 	private boolean setupEconomy() {
-		if(ts.getServer().getPluginManager().getPlugin("Vault") == null) {
+		if(getServer().getPluginManager().getPlugin("Vault") == null) {
             return false;
         }
 		
-		RegisteredServiceProvider<Economy> rsp = ts.getServer().getServicesManager().getRegistration(Economy.class);
+		RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
 		if(rsp == null) {
 			return false;
 		}
@@ -161,10 +155,10 @@ public class TradingShops extends JavaPlugin {
 	}
 	
 	public void crearConfig() {
-		this.configFile = new File(ts.getDataFolder(), "config.yml");
+		this.configFile = new File(getDataFolder(), "config.yml");
 		if(!this.configFile.exists()) {
 			this.configFile.getParentFile().mkdirs();
-			ts.saveResource("config.yml", false);
+			saveResource("config.yml", false);
 		}
 		
 		config = new YamlConfiguration();
@@ -199,6 +193,19 @@ public class TradingShops extends JavaPlugin {
 				config.set("sell", "&7%p has bought&7 %in &7for&c %out&7.");
 				config.set("noMoney", "&cYou do not have enough money to create a shop. You need at least &o$");
 				config.set("reload", "&7Configuration file reloaded.");
+			} else if(ver.equals("1.5")) {
+				config.set("adminShop", "Admin Shop");
+				config.set("normalShop", "%player%'s shop");
+				config.set("sellTitle", "Sell");
+				config.set("buyTitle", "For");
+				config.set("deleteTitle", "DELETE");
+				config.set("createTitle", "CREATE");
+				config.set("broadcastOn", "Broadcast ON");
+				config.set("broadcastOff", "Broadcast OFF");
+				config.set("createShopTitle", "Create Shop");
+				config.set("stockTitle", "Stock");
+				config.set("page", "Page");
+				config.set("buyAction", "BUY");
 			}
 		} catch(IOException | InvalidConfigurationException e) {
 			e.printStackTrace();

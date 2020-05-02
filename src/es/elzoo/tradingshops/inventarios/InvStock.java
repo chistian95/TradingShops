@@ -67,7 +67,7 @@ public class InvStock extends GUI {
 		
 		for(int i=45; i<54; i++) {
 			if(i == 47 && pag > 0) {
-				ItemStack item = GUI.crearItem(Material.ARROW, Mensajes.TIENDA_PAGE.toString()+" " + (pag+1));
+				ItemStack item = GUI.crearItem(Material.ARROW, Mensajes.TIENDA_PAGE.toString()+" " + (pag));
 				ponerItem(i, item, p -> {
 					abrirPagina(p, pag-1);
 				});
