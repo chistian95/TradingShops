@@ -1,4 +1,4 @@
-package es.elzoo.tradingshops_14.gui;
+package es.elzoo.tradingshops.gui;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;

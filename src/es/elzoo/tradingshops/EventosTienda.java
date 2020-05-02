@@ -1,4 +1,4 @@
-package es.elzoo.tradingshops_14;
+package es.elzoo.tradingshops;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,11 +14,11 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 
-import es.elzoo.tradingshops_14.Mensajes;
-import es.elzoo.tradingshops_14.Permisos;
-import es.elzoo.tradingshops_14.inventarios.InvAdminTienda;
-import es.elzoo.tradingshops_14.inventarios.InvStock;
-import es.elzoo.tradingshops_14.inventarios.InvTienda;
+import es.elzoo.tradingshops.Mensajes;
+import es.elzoo.tradingshops.Permisos;
+import es.elzoo.tradingshops.inventarios.InvAdminTienda;
+import es.elzoo.tradingshops.inventarios.InvStock;
+import es.elzoo.tradingshops.inventarios.InvTienda;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.economy.EconomyResponse;
 

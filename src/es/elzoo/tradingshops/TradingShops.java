@@ -1,4 +1,4 @@
-package es.elzoo.tradingshops_14;
+package es.elzoo.tradingshops;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +18,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import es.elzoo.tradingshops_14.gui.GUIEventos;
+import es.elzoo.tradingshops.gui.GUIEventos;
 import net.milkbowl.vault.economy.Economy;
 
 public class TradingShops extends JavaPlugin {

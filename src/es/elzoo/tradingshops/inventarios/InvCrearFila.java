@@ -1,4 +1,4 @@
-package es.elzoo.tradingshops_14.inventarios;
+package es.elzoo.tradingshops.inventarios;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -9,10 +9,10 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import es.elzoo.tradingshops_14.FilaTienda;
-import es.elzoo.tradingshops_14.Mensajes;
-import es.elzoo.tradingshops_14.Tienda;
-import es.elzoo.tradingshops_14.gui.GUI;
+import es.elzoo.tradingshops.FilaTienda;
+import es.elzoo.tradingshops.Mensajes;
+import es.elzoo.tradingshops.Tienda;
+import es.elzoo.tradingshops.gui.GUI;
 
 public class InvCrearFila extends GUI {
 	private ItemStack itemIn;

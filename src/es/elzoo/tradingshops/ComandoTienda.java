@@ -1,4 +1,4 @@
-package es.elzoo.tradingshops_14;
+package es.elzoo.tradingshops;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -6,7 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import es.elzoo.tradingshops_14.inventarios.InvStock;
+import es.elzoo.tradingshops.inventarios.InvStock;
 import net.md_5.bungee.api.ChatColor;
 
 public class ComandoTienda implements CommandExecutor {

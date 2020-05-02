@@ -1,4 +1,4 @@
-package es.elzoo.tradingshops_14;
+package es.elzoo.tradingshops;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,8 +26,8 @@ import org.bukkit.plugin.Plugin;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 
-import es.elzoo.tradingshops_14.Mensajes;
-import es.elzoo.tradingshops_14.inventarios.InvStock;
+import es.elzoo.tradingshops.Mensajes;
+import es.elzoo.tradingshops.inventarios.InvStock;
 
 public class Tienda {
 	private static Plugin plugin = Bukkit.getPluginManager().getPlugin("TradingShops");

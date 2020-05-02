@@ -1,4 +1,4 @@
-package es.elzoo.tradingshops_14;
+package es.elzoo.tradingshops;
 
 import java.sql.PreparedStatement;
 import java.util.ArrayList;

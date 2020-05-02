@@ -1,4 +1,4 @@
-package es.elzoo.tradingshops_14.inventarios;
+package es.elzoo.tradingshops.inventarios;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,10 +12,10 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import es.elzoo.tradingshops_14.Mensajes;
-import es.elzoo.tradingshops_14.StockTienda;
-import es.elzoo.tradingshops_14.TradingShops;
-import es.elzoo.tradingshops_14.gui.GUI;
+import es.elzoo.tradingshops.Mensajes;
+import es.elzoo.tradingshops.StockTienda;
+import es.elzoo.tradingshops.TradingShops;
+import es.elzoo.tradingshops.gui.GUI;
 
 public class InvStock extends GUI {
 	private static List<InvStock> inventarios = new ArrayList<InvStock>();  

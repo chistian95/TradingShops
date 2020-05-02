@@ -1,4 +1,4 @@
-package es.elzoo.tradingshops_14.inventarios;
+package es.elzoo.tradingshops.inventarios;
 
 import java.util.Optional;
 
@@ -7,10 +7,10 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 
-import es.elzoo.tradingshops_14.FilaTienda;
-import es.elzoo.tradingshops_14.Mensajes;
-import es.elzoo.tradingshops_14.Tienda;
-import es.elzoo.tradingshops_14.gui.GUI;
+import es.elzoo.tradingshops.FilaTienda;
+import es.elzoo.tradingshops.Mensajes;
+import es.elzoo.tradingshops.Tienda;
+import es.elzoo.tradingshops.gui.GUI;
 
 public class InvAdminTienda extends GUI {
 	private Tienda tienda;
