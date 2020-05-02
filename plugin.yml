@@ -1,0 +1,11 @@
+name: TradingShops
+main: es.elzoo.tradingshops.TradingShops
+author: Chistian95
+website: https://elzoo.es
+version: 1.5.0
+api-version: 1.15
+softdepend: [Vault, WorldGuard]
+commands:
+  tradeshop:
+    description: Main shop command
+    aliases: [shop]
