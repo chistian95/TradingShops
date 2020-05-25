@@ -14,8 +14,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 
-import es.elzoo.tradingshops.Mensajes;
-import es.elzoo.tradingshops.Permisos;
 import es.elzoo.tradingshops.inventarios.InvAdminTienda;
 import es.elzoo.tradingshops.inventarios.InvStock;
 import es.elzoo.tradingshops.inventarios.InvTienda;
@@ -61,7 +59,7 @@ public class EventosTienda implements Listener {
 			return;
 		}
 		
-		if(event.getPlayer().isSneaking() && event.getPlayer().hasPermission(Permisos.TIENDA_ROMPER_STOCK.toString())) {
+		if(event.getPlayer().isSneaking()) {
 			return;
 		}
 		
