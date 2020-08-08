@@ -1,10 +1,9 @@
 package es.elzoo.tradingshops;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
-
 import org.bukkit.block.Block;
-
 import com.sk89q.worldedit.bukkit.BukkitWorld;
 import com.sk89q.worldguard.WorldGuard;
 import com.sk89q.worldguard.protection.flags.StateFlag;
@@ -28,24 +27,24 @@ public class WorldGuardLoader {
 		}
 	}
 	
-	public boolean checkRegion(Block bloque) {
-		AtomicBoolean isTiendaLoc = new AtomicBoolean(false);
+	public boolean checkRegion(Block block) {
+		AtomicBoolean isShopLoc = new AtomicBoolean(false);
 		
 		if(FLAG_TRADE != null && TradingShops.config.getBoolean("enableWorldGuardFlag")) {
 			RegionContainer container = WorldGuard.getInstance().getPlatform().getRegionContainer();
-			RegionManager regiones = container.get(new BukkitWorld(bloque.getWorld()));
-			regiones.getRegions().forEach((id, region) -> {
-				if(region.getId().equalsIgnoreCase(ProtectedRegion.GLOBAL_REGION) || region.contains(bloque.getX(), bloque.getY(), bloque.getZ())) {
-					if(region.getFlag(TradingShops.wgLoader.getFlagTrade().get()) != null && region.getFlag(TradingShops.wgLoader.getFlagTrade().get()).equals(StateFlag.State.ALLOW)) {
-						isTiendaLoc.set(true);
+			RegionManager regions = container.get(new BukkitWorld(block.getWorld()));
+			Objects.requireNonNull(regions).getRegions().forEach((id, region) -> {
+				if(region.getId().equalsIgnoreCase(ProtectedRegion.GLOBAL_REGION) || region.contains(block.getX(), block.getY(), block.getZ())) {
+					if((region.getFlag(TradingShops.wgLoader.getFlagTrade().get()) != null) && Objects.equals(region.getFlag(TradingShops.wgLoader.getFlagTrade().get()), StateFlag.State.ALLOW)) {
+						isShopLoc.set(true);
 					}
 				}
 			});
 		} else {
-			isTiendaLoc.set(true);
+			isShopLoc.set(true);
 		}
 		
-		return isTiendaLoc.get();
+		return isShopLoc.get();
 	}
 	
 	public Optional<StateFlag> getFlagTrade() {

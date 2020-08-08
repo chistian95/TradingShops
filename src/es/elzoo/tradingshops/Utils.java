@@ -1,35 +1,29 @@
 package es.elzoo.tradingshops;
 
 import java.util.Optional;
-
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.Plugin;
 
 public class Utils {
-	public static Plugin plugin = Bukkit.getPluginManager().getPlugin("TradingShops");
 	
 	public static boolean hasStock(Player player, ItemStack item) {
 		return player.getInventory().containsAtLeast(item, item.getAmount());
 	}
 	
-	public static boolean hasStock(Tienda tienda, ItemStack item) {
-		if(tienda.isAdmin()) {
+	public static boolean hasStock(Shop shop, ItemStack item) {
+		if(shop.isAdmin())
 			return true;
-		}
 		
 		int max = TradingShops.config.getInt("stockPages");
 		for(int i=0; i<max; i++) {
-			Optional<StockTienda> stockTienda = StockTienda.getStockTiendaByOwner(tienda.getOwner(), i);
-			if(!stockTienda.isPresent()) {
+			Optional<StockShop> stockStore = StockShop.getStockShopByOwner(shop.getOwner(), i);
+			if(!stockStore.isPresent()) {
 				continue;
 			}
-			if(stockTienda.get().getInventario().containsAtLeast(item, item.getAmount())) {
+			if(stockStore.get().getInventory().containsAtLeast(item, item.getAmount())) {
 				return true;
 			}
 		}
-		
 		return false;
 	}
 }

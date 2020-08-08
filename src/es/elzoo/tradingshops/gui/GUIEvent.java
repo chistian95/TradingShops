@@ -7,39 +7,36 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import es.elzoo.tradingshops.inventories.InvStock;
 
-public class GUIEventos implements Listener {
+public class GUIEvent implements Listener {
 	@EventHandler
 	public void onClick(InventoryClickEvent e) {
-		if(!(e.getWhoClicked() instanceof Player)) {
+		if(!(e.getWhoClicked() instanceof Player))
 			return;
-		}		
+
 		Player player = (Player) e.getWhoClicked();
 
-		GUI gui = GUI.inventariosAbiertos.get(player.getName());
-		if(gui == null) {
+		GUI gui = GUI.inventoriesOpen.get(player.getName());
+		if(gui == null)
 			return;
-		}
-		GUIAccion accion = gui.getAcciones().get(e.getSlot());
-		
+
+		GUIAction action = gui.getActions().get(e.getSlot());
 		gui.onClick(e);
 		
-		if(accion != null) {
-			accion.click(player);
-		}
+		if(action != null)
+			action.click(player);
 	}
 	
 	@EventHandler
 	public void onDrag(InventoryDragEvent e) {
-		if(!(e.getWhoClicked() instanceof Player)) {
+		if(!(e.getWhoClicked() instanceof Player))
 			return;
-		}		
-		Player player = (Player) e.getWhoClicked();
 
-		GUI gui = GUI.inventariosAbiertos.get(player.getName());
-		if(gui == null) {
+		Player player = (Player) e.getWhoClicked();
+		GUI gui = GUI.inventoriesOpen.get(player.getName());
+		if(gui == null)
 			return;
-		}
 		
 		gui.onDrag(e);
 	}
@@ -47,16 +44,18 @@ public class GUIEventos implements Listener {
 	@EventHandler
 	public void onClose(InventoryCloseEvent e) {
 		Player player = (Player) e.getPlayer();
-		GUI gui = GUI.inventariosAbiertos.get(player.getName());
-		if(gui != null) {
+		GUI gui = GUI.inventoriesOpen.get(player.getName());
+		if(gui != null)
 			gui.onClose(e);
-		}
-		GUI.inventariosAbiertos.remove(player.getName());
+
+		GUI.inventoriesOpen.remove(player.getName());
+		InvStock.inShopInv.remove(e.getPlayer());
 	}
 	
 	@EventHandler
 	public void onQuit(PlayerQuitEvent e) {
-		Player player = (Player) e.getPlayer();
-		GUI.inventariosAbiertos.remove(player.getName());
+		Player player = e.getPlayer();
+		GUI.inventoriesOpen.remove(player.getName());
+		InvStock.inShopInv.remove(e.getPlayer());
 	}
 }
