@@ -53,10 +53,8 @@ public class EventShop implements Listener {
 		else
 			isShopLoc = true;
 
-		if(!isShopLoc) {
-			event.getPlayer().sendMessage(Messages.SHOP_NO_ACCESS.toString());
+		if(!isShopLoc)
 			return;
-		}
 
 		if(event.getPlayer().isSneaking())
 			return;

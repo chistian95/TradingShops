@@ -45,7 +45,7 @@ usePermissions: true
 defaultShopLimit: 5
 
 #TRANSLATIONS
-noPermissions: "&cYou do not have permissions for this command!"
+noPermissions: "&cYou do not have permission for this command!"
 deleteShop: "&7Click on the shop you want to &cDELETE&7!"
 createShop: "&7Click the BARREL you want to &aCREATE&7 your shop at!"
 shopNotOwned: "&cYou do not own this shop!"

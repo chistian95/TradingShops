@@ -159,34 +159,28 @@ public class TradingShops extends JavaPlugin {
 				case "1.0":
 					config.set("deleteBlock", false);
 					config.set("showParticles", true);
-					config.set("configVersion", 1.1);
-					break;
 				case "1.1":
 					config.set("enableWorldGuardFlag", true);
-					break;
 				case "1.2":
 					config.set("stockPages", 5);
-					break;
 				case "1.3":
 					config.set("usePermissions", true);
 					config.set("defaultShopLimit", 5);
-					break;
 				case "1.4":
-					config.set("noPermissions", "&cYou do not have permissions for this command!");
-					config.set("deleteShop", "&7Click on the shop you want to delete!");
+					config.set("noPermissions", "&cYou do not have permission for this command!");
+					config.set("deleteShop", "&7Click on the shop you want to &cDELETE&7!");
 					config.set("createShop", "&7Click the BARREL you want to create the shop on!");
 					config.set("shopNotOwned", "&cYou do not own this shop!");
-					config.set("shopDeleted", "&7Shop deleted.");
-					config.set("shopCreated", "&7Shop created.");
+					config.set("shopDeleted", "&7Your shop has been &cDELETED&7!");
+					config.set("shopCreated", "&7Your shop has been &aCREATED&7!");
 					config.set("shopLimit", "&cYou do not have permission or reached your shops amount limit!");
 					config.set("noItems", "&cYou do not have enough item(s) to buy from this shop!");
 					config.set("noStock", "&cThe shop is currently out of stock of that item(s)!");
 					config.set("noStockNotify", "&cOne of your shops is currently out of stock! &o(%s)");
-					config.set("buy", "&7You bought&7 %in &7for&c %out&7.");
-					config.set("sell", "&7%p has bought&7 %in &7for&c %out&7.");
+					config.set("buy", "&7You bought&a %in &7for&c %out&7!");
+					config.set("sell", "&7%p has bought&7&c %in &7for&a %out&7!");
 					config.set("noMoney", "&cYou do not have enough money to create a shop. You need at least &o$");
 					config.set("reload", "&7Configuration file reloaded.");
-					break;
 				case "1.5":
 					config.set("adminShop", "Admin Shop");
 					config.set("normalShop", "%player%'s shop");
@@ -200,7 +194,6 @@ public class TradingShops extends JavaPlugin {
 					config.set("stockTitle", "Shop Stock Inventory");
 					config.set("page", "Page");
 					config.set("buyAction", "BUY");
-					break;
 				case "1.6":
 					config.set("shopBusy", "&6Shop is currently busy, try again soon!");
 					config.set("stockCommandDisabled", "&cThe /stock command has been disabled!");
@@ -208,7 +201,6 @@ public class TradingShops extends JavaPlugin {
 					config.set("playerInventoryFull", "&cYour inventory is FULL! Cannot buy any items!");
 					config.set("configVersion", 2.0);
 					config.save(configFile);
-					break;
 				case "2.0":
 					break;
 			}
