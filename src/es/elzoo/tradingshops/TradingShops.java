@@ -206,7 +206,7 @@ public class TradingShops extends JavaPlugin {
 					config.set("shopNoAccess", "&cYou do not have permission to access this shop!");
 					config.set("stockCommandDisabled", "&cThe /stock command has been disabled!");
 					config.set("noStockCooldown", 300);
-					config.set("playerInventoryFull", "&cThe /shop stock command has been disabled!");
+					config.set("playerInventoryFull", "&cYour inventory is FULL! Cannot buy any items!");
 					config.set("configVersion", 2.0);
 					config.save(configFile);
 					break;
