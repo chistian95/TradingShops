@@ -203,7 +203,6 @@ public class TradingShops extends JavaPlugin {
 					break;
 				case "1.6":
 					config.set("shopBusy", "&6Shop is currently busy, try again soon!");
-					config.set("shopNoAccess", "&cYou do not have permission to access this shop!");
 					config.set("stockCommandDisabled", "&cThe /stock command has been disabled!");
 					config.set("noStockCooldown", 300);
 					config.set("playerInventoryFull", "&cYour inventory is FULL! Cannot buy any items!");

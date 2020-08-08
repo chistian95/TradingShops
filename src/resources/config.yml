@@ -72,7 +72,6 @@ stockTitle: "Shop Stock Inventory"
 page: "Page"
 buyAction: "BUY"
 shopBusy: "&6Shop is currently busy, try again soon!"
-shopNoAccess: "&cYou do not have permission to access this shop!"
 stockCommandDisabled: "&cThe /shop stock command has been disabled!"
 playerInventoryFull: "&cYour inventory is FULL! Cannot buy any items!"
 

@@ -32,8 +32,7 @@ public enum Messages {
 	SHOP_TITLE_STOCK("stockTitle"),
 	SHOP_PAGE("page"),
 	SHOP_TITLE_BUYACTION("buyAction"),
-	SHOP_BUSY("shopBusy"),
-	SHOP_NO_ACCESS("shopNoAccess");
+	SHOP_BUSY("shopBusy");
 
 	private final String msg;
 	
