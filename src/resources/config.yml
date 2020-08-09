@@ -1,0 +1,79 @@
+# The block you want to use as the shop.
+shopBlock: 'minecraft:barrel'
+
+# The block you want to open the stock GUI.
+stockBlock: 'minecraft:composter'
+
+# Allows to open the stock GUI using /shop stock.
+enableStockCommand: true
+
+# Number of pages to have in the stock GUI.
+stockPages: 5
+
+# Time in seconds before receiving another message about being out of stock of that item when someone tries to buy
+noStockCooldown: 300
+
+# Amount of money needed to create a shop.
+# Set to 0 to disable.
+createCost: 0.0
+
+# Amount of money returned when deleting a shop.
+# Set to 0 to disable.
+returnAmount: 0.0
+
+# Amount of days of player inactivity before deleting theirs shops. 
+# Set to 0 to disable.
+maxInactiveDays: 0
+
+# Delete block on shop remove
+deleteBlock: false
+
+# Show particles in shop blocks
+showParticles: true
+
+# Require to set the trade-shop flag in the regions for it to work.
+# Only works if WorldGuard is installed.
+enableWorldGuardFlag: true
+
+# Set whether you want to use permission nodes or not.
+# (set to false if you don't have a permission plugin).
+usePermissions: true
+
+# Only works if usePermissions is set to false.
+# If it's set to true, then you'll need to edit the limit via permission nodes.
+# Set to -1 to disable the limit
+defaultShopLimit: 5
+
+#TRANSLATIONS
+noPermissions: "&cYou do not have permission for this command!"
+deleteShop: "&7Click on the shop you want to &cDELETE&7!"
+createShop: "&7Click the BARREL you want to &aCREATE&7 your shop at!"
+shopNotOwned: "&cYou do not own this shop!"
+shopDeleted: "&7Your shop has been &cDELETED&7!"
+shopCreated: "&7Your shop has been &aCREATED&7!"
+shopLimit: "&cYou do not have permission or reached your shops amount limit!"
+noItems: "&cYou do not have enough item(s) to buy from this shop!"
+noStock: "&cThis shop is currently out of stock of that item(s)!"
+noStockNotify: "&cOne of your shops is currently out of stock! &o(%s)"
+buy: "&7You bought&a %in &7for&c %out&7!"
+sell: "&7%p has bought&7&c %in &7for&a %out&7!"
+noMoney: "&cYou do not have enough money to create a shop. You need at least &o$"
+reload: "&7Configuration file reloaded."
+adminShop: "Admin Shop"
+normalShop: "&l%player%'s Shop"
+sellTitle: "ITEMS FOR SALE"
+buyTitle: "PRICE TO BUY ITEMS"
+deleteTitle: "DELETE"
+createTitle: "CREATE"
+broadcastOn: "Broadcast ON"
+broadcastOff: "Broadcast OFF"
+createShopTitle: "Create shop trades!"
+stockTitle: "Shop Stock Inventory"
+page: "Page"
+buyAction: "BUY"
+shopBusy: "&6Shop is currently busy, try again soon!"
+stockCommandDisabled: "&cThe /shop stock command has been disabled!"
+playerInventoryFull: "&cYour inventory is FULL! Cannot buy any items!"
+
+# Do not edit this
+configVersion: 2.0
