@@ -141,10 +141,6 @@ public class EventShop implements Listener {
 					limitShops = numShops >= numConfig && numConfig >= 0;
 				}
 
-				if(event.getPlayer().isOp()) {
-					limitShops = false;
-				}
-
 				if(event.getPlayer().hasPermission(Permission.SHOP_LIMIT_BYPASS.toString())) {
 					limitShops = false;
 				}
@@ -175,7 +171,7 @@ public class EventShop implements Listener {
 
 				playersCreatingAdmin.remove(event.getPlayer().getName());
 
-				if(!event.getPlayer().isOp() || !event.getPlayer().hasPermission(Permission.SHOP_ADMIN.toString())) {
+				if(!event.getPlayer().hasPermission(Permission.SHOP_ADMIN.toString())) {
 					event.getPlayer().sendMessage(Messages.NO_PERMISSION.toString());
 					return;
 				}
