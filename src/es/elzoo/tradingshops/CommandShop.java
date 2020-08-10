@@ -49,7 +49,7 @@ public class CommandShop implements CommandExecutor {
 		player.sendMessage(ChatColor.GRAY + "/"+label+" create");
 		player.sendMessage(ChatColor.GRAY + "/"+label+" delete");
 		player.sendMessage(ChatColor.GRAY + "/"+label+" list");
-		if(player.hasPermission(Permission.SHOP_ADMIN.toString()))
+		if(player.isOp() || player.hasPermission(Permission.SHOP_ADMIN.toString()))
 			player.sendMessage(ChatColor.GRAY + "/"+label+" list player");
 	}
 	
@@ -67,7 +67,7 @@ public class CommandShop implements CommandExecutor {
 	}
 	
 	private void adminShop(Player player) {
-		if(!player.hasPermission(Permission.SHOP_ADMIN.toString())) {
+		if(!player.isOp() || !player.hasPermission(Permission.SHOP_ADMIN.toString())) {
 			player.sendMessage(Messages.NO_PERMISSION.toString());
 			return;
 		}
@@ -88,10 +88,10 @@ public class CommandShop implements CommandExecutor {
 	}
 
 	private void listShops(Player player, String argsShopList) {
-		if(argsShopList != null && !player.hasPermission(Permission.SHOP_ADMIN.toString())) {
-				player.sendMessage(Messages.NO_PERMISSION.toString());
-				return;
-			}
+		if(argsShopList != null) if(!player.isOp() || !player.hasPermission(Permission.SHOP_ADMIN.toString())) {
+			player.sendMessage(Messages.NO_PERMISSION.toString());
+			return;
+		}
 
 		UUID sOwner;
 		if(argsShopList == null) {
