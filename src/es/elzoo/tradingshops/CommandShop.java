@@ -102,7 +102,8 @@ public class CommandShop implements CommandExecutor {
 				sOwner = getUUID(argsShopList);
 			} catch (Exception e) {
 				e.printStackTrace();
-				player.sendMessage(ChatColor.RED + "Exception error from UUID retrieval!");
+				player.sendMessage(Messages.NO_PLAYER_SHOP.toString());
+				Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "TradingShops Exception Error: Player name does not exist! Cannot retrieve shop!");
 				return;
 			}
 		}
