@@ -5,6 +5,7 @@ import java.util.Objects;
 
 public enum Messages {
 	NO_PERMISSION("noPermissions"),
+	NO_PLAYER_SHOP("noPlayerShop"),
 	PLAYER_INV_FULL("playerInventoryFull"),
 	SHOP_BUSY("shopBusy"),
 	SHOP_CLEAR("deleteShop"),

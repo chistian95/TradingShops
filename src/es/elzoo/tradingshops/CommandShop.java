@@ -6,7 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import es.elzoo.tradingshops.inventories.InvStock;
-import net.md_5.bungee.api.ChatColor;
+import org.bukkit.ChatColor;
 import java.net.URL;
 import java.util.Scanner;
 import java.util.UUID;
@@ -101,8 +101,8 @@ public class CommandShop implements CommandExecutor {
 			try {
 				sOwner = getUUID(argsShopList);
 			} catch (Exception e) {
-				e.printStackTrace();
-				player.sendMessage(ChatColor.RED + "Exception error from UUID retrieval!");
+				player.sendMessage(Messages.NO_PLAYER_SHOP.toString());
+				Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "TradingShops Exception Error: Player name does not exist! Cannot retrieve shop!");
 				return;
 			}
 		}
@@ -137,8 +137,7 @@ public class CommandShop implements CommandExecutor {
 	}
 
 	private static UUID getUUID(String name) throws Exception {
-		Scanner scanner;
-		scanner = new Scanner(new URL("https://api.mojang.com/users/profiles/minecraft/" + name).openStream());
+		Scanner scanner = new Scanner(new URL("https://api.mojang.com/users/profiles/minecraft/" + name).openStream());
 		String input = scanner.nextLine();
 		scanner.close();
 

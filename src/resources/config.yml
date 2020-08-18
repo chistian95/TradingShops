@@ -74,6 +74,7 @@ buyAction: "BUY"
 shopBusy: "&6Shop is currently busy, try again soon!"
 stockCommandDisabled: "&cThe /shop stock command has been disabled!"
 playerInventoryFull: "&cYour inventory is FULL! Cannot buy any items!"
+noPlayerShop: "&cPlayer name does not exist! Cannot list player shop!"
 
 # Do not edit this
 configVersion: 2.0

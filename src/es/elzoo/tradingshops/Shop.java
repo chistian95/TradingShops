@@ -11,7 +11,6 @@ import java.util.UUID;
 import java.util.Optional;
 import java.util.Objects;
 import java.util.Calendar;
-import java.util.concurrent.atomic.AtomicInteger;
 import com.google.gson.JsonElement;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -89,11 +88,9 @@ public class Shop {
 
 	public static void getShopList(Player player, UUID sOwner, String pOwner) {
 		player.sendMessage(ChatColor.GOLD + "Found " + ChatColor.GREEN + getNumShops(sOwner) + ChatColor.GOLD + " shop(s) for player: " + ChatColor.GREEN + pOwner);
-		AtomicInteger shopNum = new AtomicInteger();
-		shopNum.getAndIncrement();
 		shops.parallelStream()
 				.filter(s -> !s.admin && s.isOwner(sOwner))
-				.forEach(s -> player.sendMessage(ChatColor.GOLD + "Shop " + ChatColor.GREEN + (shopNum.getAndIncrement()) + ChatColor.GOLD + " Location XYZ: " + ChatColor.GREEN + s.location.getBlockX() + ChatColor.GOLD + " / " + ChatColor.GREEN + s.location.getBlockY() + ChatColor.GOLD + " / " + ChatColor.GREEN + s.location.getBlockZ() + ChatColor.GOLD + " in " + ChatColor.GREEN + Objects.requireNonNull(s.location.getWorld()).getName()));
+				.forEach(s -> player.sendMessage(ChatColor.GOLD + "Shop id " + ChatColor.GREEN + (s.idTienda) + ChatColor.GOLD + " Location XYZ: " + ChatColor.GREEN + s.location.getBlockX() + ChatColor.GOLD + " / " + ChatColor.GREEN + s.location.getBlockY() + ChatColor.GOLD + " / " + ChatColor.GREEN + s.location.getBlockZ() + ChatColor.GOLD + " in " + ChatColor.GREEN + Objects.requireNonNull(s.location.getWorld()).getName()));
 	}
 	
 	public static Shop createShop(Location loc, UUID owner) {
