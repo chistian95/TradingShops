@@ -58,8 +58,11 @@ public abstract class GUI {
 	
 	public void placeItem(int slot, ItemStack item, GUIAction action) {
 		inventory.setItem(slot, item);
-		if(action != null)
+		if(action != null) {
 			actions.put(slot, action);
+		} else {
+			actions.remove(slot);
+		}
 	}
 	
 	public void placeItem(int slot, ItemStack item) {
