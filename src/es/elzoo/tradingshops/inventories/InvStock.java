@@ -40,7 +40,7 @@ public class InvStock extends GUI {
 	public void onClick(InventoryClickEvent event) {
 		super.onClick(event);
 		
-		if(event.getRawSlot() >= 45)
+		if(event.getRawSlot() >= 45 && event.getRawSlot() < 54)
 			return;
 
 		event.setCancelled(false);
