@@ -44,6 +44,9 @@ usePermissions: true
 # Set to -1 to disable the limit
 defaultShopLimit: 5
 
+#Allow managing the shop remotely using "/shop view <id>" command.
+remoteManage: true
+
 #TRANSLATIONS
 noPermissions: "&cYou do not have permission for this command!"
 deleteShop: "&7Click on the shop you want to &cDELETE&7!"
@@ -77,4 +80,4 @@ playerInventoryFull: "&cYour inventory is FULL! Cannot buy any items!"
 noPlayerShop: "&cPlayer name does not exist! Cannot list player shop!"
 
 # Do not edit this
-configVersion: 2.0
+configVersion: 2.1

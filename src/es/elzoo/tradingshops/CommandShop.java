@@ -1,17 +1,21 @@
 package es.elzoo.tradingshops;
 
+import java.net.URL;
+import java.util.Optional;
+import java.util.Scanner;
+import java.util.UUID;
+
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import es.elzoo.tradingshops.inventories.InvStock;
-import org.bukkit.ChatColor;
-import java.net.URL;
-import java.util.Scanner;
-import java.util.UUID;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+
+import es.elzoo.tradingshops.inventories.InvAdminShop;
+import es.elzoo.tradingshops.inventories.InvStock;
 
 public class CommandShop implements CommandExecutor {
 	@Override
@@ -37,6 +41,8 @@ public class CommandShop implements CommandExecutor {
 			Bukkit.getServer().getScheduler().runTaskAsynchronously(TradingShops.getPlugin(), () -> listShops(player, null));
 		} else if(args[0].equalsIgnoreCase("list") && args.length >= 2) {
 			Bukkit.getServer().getScheduler().runTaskAsynchronously(TradingShops.getPlugin(), () -> listShops(player, args[1]));
+		} else if(args[0].equalsIgnoreCase("view") && args.length >= 2) {
+			viewShop(player, args);
 		} else { listSubCmd(player, label); }
 		
 		return true;
@@ -49,6 +55,7 @@ public class CommandShop implements CommandExecutor {
 		player.sendMessage(ChatColor.GRAY + "/"+label+" create");
 		player.sendMessage(ChatColor.GRAY + "/"+label+" delete");
 		player.sendMessage(ChatColor.GRAY + "/"+label+" list");
+		player.sendMessage(ChatColor.GRAY + "/"+label+" view <id>");
 		if(player.hasPermission(Permission.SHOP_ADMIN.toString()))
 			player.sendMessage(ChatColor.GRAY + "/"+label+" list player");
 	}
@@ -147,4 +154,37 @@ public class CommandShop implements CommandExecutor {
 		return UUID.fromString(uuidSeparation);
 	}
 
+	private static void viewShop(Player player, String[] args) {
+		if(!TradingShops.config.getBoolean("remoteManage")) {
+			player.sendMessage(Messages.NO_PERMISSION.toString());
+			return;
+		}
+		
+		int shopId = -1;
+		
+		try {
+			shopId = Integer.parseInt(args[1]);
+		} catch(Exception e) {
+			shopId = -1;
+		}
+		
+		if(shopId < 0) {
+			player.sendMessage(Messages.SHOP_NO_SELF.toString());
+			return;
+		} 
+		
+		Optional<Shop> shop = Shop.getShopById(shopId);
+		if(!shop.isPresent() || !shop.get().isOwner(player.getUniqueId())) {
+			player.sendMessage(Messages.SHOP_NO_SELF.toString());
+			return;
+		}
+		
+		if(InvStock.inShopInv.containsValue(shop.get().getOwner())) {
+			player.sendMessage(Messages.SHOP_BUSY.toString());
+			return;
+		}
+		
+		InvAdminShop inv = new InvAdminShop(shop.get());
+		inv.open(player, shop.get().getOwner());
+	}
 }

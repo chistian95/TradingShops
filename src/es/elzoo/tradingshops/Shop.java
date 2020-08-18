@@ -3,15 +3,15 @@ package es.elzoo.tradingshops;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.temporal.ChronoUnit;
-import java.util.List;
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.UUID;
-import java.util.Optional;
-import java.util.Objects;
 import java.util.Calendar;
-import com.google.gson.JsonElement;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.UUID;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -24,9 +24,17 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
+
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+
 import es.elzoo.tradingshops.inventories.InvStock;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.ClickEvent.Action;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.chat.hover.content.Text;
 
 public class Shop {
 	private static final Plugin plugin = Bukkit.getPluginManager().getPlugin("TradingShops");
@@ -82,15 +90,36 @@ public class Shop {
 		return shops.parallelStream().filter(shop -> shop.location.equals(location)).findFirst();
 	}
 	
+	public static Optional<Shop> getShopById(int id) {
+		return shops.parallelStream().filter(shop -> shop.idTienda == id).findFirst();
+	}
+	
 	public static int getNumShops(UUID owner) {
 		return (int) shops.parallelStream().filter(t -> !t.admin && t.owner.equals(owner)).count();
 	}
 
 	public static void getShopList(Player player, UUID sOwner, String pOwner) {
 		player.sendMessage(ChatColor.GOLD + "Found " + ChatColor.GREEN + getNumShops(sOwner) + ChatColor.GOLD + " shop(s) for player: " + ChatColor.GREEN + pOwner);
+		
+		boolean manage = TradingShops.config.getBoolean("remoteManage");
+		
 		shops.parallelStream()
 				.filter(s -> !s.admin && s.isOwner(sOwner))
-				.forEach(s -> player.sendMessage(ChatColor.GOLD + "Shop id " + ChatColor.GREEN + (s.idTienda) + ChatColor.GOLD + " Location XYZ: " + ChatColor.GREEN + s.location.getBlockX() + ChatColor.GOLD + " / " + ChatColor.GREEN + s.location.getBlockY() + ChatColor.GOLD + " / " + ChatColor.GREEN + s.location.getBlockZ() + ChatColor.GOLD + " in " + ChatColor.GREEN + Objects.requireNonNull(s.location.getWorld()).getName()));
+				.forEach(s -> {
+					if(!s.isOwner(player.getUniqueId()) || !manage) {
+						player.sendMessage(ChatColor.GOLD + "Shop id " + ChatColor.GREEN + (s.idTienda) + ChatColor.GOLD + " Location XYZ: " + ChatColor.GREEN + s.location.getBlockX() + ChatColor.GOLD + " / " + ChatColor.GREEN + s.location.getBlockY() + ChatColor.GOLD + " / " + ChatColor.GREEN + s.location.getBlockZ() + ChatColor.GOLD + " in " + ChatColor.GREEN + Objects.requireNonNull(s.location.getWorld()).getName());
+					} else {
+						String rawMessage = ChatColor.GOLD + "Shop id " + ChatColor.GREEN + (s.idTienda) + ChatColor.GOLD + " Location XYZ: " + ChatColor.GREEN + s.location.getBlockX() + ChatColor.GOLD + " / " + ChatColor.GREEN + s.location.getBlockY() + ChatColor.GOLD + " / " + ChatColor.GREEN + s.location.getBlockZ() + ChatColor.GOLD + " in " + ChatColor.GREEN + Objects.requireNonNull(s.location.getWorld()).getName();
+						TextComponent message = new TextComponent(rawMessage);
+						
+						TextComponent manageText = new TextComponent(ChatColor.DARK_GRAY + " [" + ChatColor.GOLD + "MANAGE" + ChatColor.DARK_GRAY + "]");						
+						manageText.setClickEvent(new ClickEvent(Action.RUN_COMMAND, "/shop view "+s.idTienda));
+						manageText.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(ChatColor.GOLD + "Manage your shop.")));						
+						message.addExtra(manageText);
+						
+						player.spigot().sendMessage(message);
+					}
+				});
 	}
 	
 	public static Shop createShop(Location loc, UUID owner) {

@@ -203,6 +203,8 @@ public class TradingShops extends JavaPlugin {
 					config.set("configVersion", 2.0);
 					config.save(configFile);
 				case "2.0":
+					config.set("remoteManage", true);
+				case "2.1":
 					break;
 			}
 		} catch(IOException | InvalidConfigurationException e) {
