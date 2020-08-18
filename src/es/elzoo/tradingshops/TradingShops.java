@@ -200,10 +200,10 @@ public class TradingShops extends JavaPlugin {
 					config.set("noStockCooldown", 300);
 					config.set("playerInventoryFull", "&cYour inventory is FULL! Cannot buy any items!");
 					config.set("noPlayerShop", "&cPlayer name does not exist! Cannot list player shop!");
-					config.set("configVersion", 2.0);
-					config.save(configFile);
 				case "2.0":
 					config.set("remoteManage", true);
+					config.set("configVersion", 2.1);
+					config.save(configFile);
 				case "2.1":
 					break;
 			}
