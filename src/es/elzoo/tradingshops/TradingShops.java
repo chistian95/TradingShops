@@ -204,6 +204,8 @@ public class TradingShops extends JavaPlugin {
 					config.save(configFile);
 				case "2.0":
 					config.set("remoteManage", true);
+					config.set("configVersion", 2.1);
+					config.save(configFile);
 				case "2.1":
 					break;
 			}
