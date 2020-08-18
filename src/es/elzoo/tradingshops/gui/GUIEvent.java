@@ -21,7 +21,7 @@ public class GUIEvent implements Listener {
 		if(gui == null)
 			return;
 
-		GUIAction action = gui.getActions().get(e.getSlot());
+		GUIAction action = gui.getActions().get(e.getRawSlot());
 		gui.onClick(e);
 		
 		if(action != null)

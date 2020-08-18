@@ -24,7 +24,6 @@ public abstract class GUI {
 	private final Map<Integer, GUIAction> actions;
 	
 	public GUI(int invDone, String invNumber) {
-		UUID uuid = UUID.randomUUID();
 		inventory = Bukkit.createInventory(null, invDone, invNumber);
 		actions = new HashMap<>();
 	}

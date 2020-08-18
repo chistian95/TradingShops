@@ -346,6 +346,7 @@ public class Shop {
 		return true;
 	}
 	
+	@SuppressWarnings("deprecation")
 	public boolean hasExpired() {
 		if(this.admin)
 			return false;

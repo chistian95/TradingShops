@@ -68,17 +68,17 @@ public class InvCreateRow extends GUI {
 		if(Objects.requireNonNull(inv).getType().equals(InventoryType.CHEST) && event.getView().getTitle().contains(Messages.SHOP_TITLE_CREATESHOP.toString())) {
 			event.setCancelled(true);
 			
-			if(event.getSlot() == 11 || event.getSlot() == 15) {				
+			if(event.getRawSlot() == 11 || event.getRawSlot() == 15) {				
 				ItemStack item =  Objects.requireNonNull(event.getCursor()).clone();
 				
 				if(event.getClick().isRightClick()) {				
 					item.setAmount(1);
-					placeItem(event.getSlot(), item);
-				} else { placeItem(event.getSlot(), item); }
+					placeItem(event.getRawSlot(), item);
+				} else { placeItem(event.getRawSlot(), item); }
 
-				if(event.getSlot() == 11) {
+				if(event.getRawSlot() == 11) {
 					itemOut = item;
-				} else if(event.getSlot() == 15) {
+				} else if(event.getRawSlot() == 15) {
 					itemIn = item;
 				}
 			}			
