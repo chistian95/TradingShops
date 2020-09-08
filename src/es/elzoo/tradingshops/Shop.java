@@ -141,7 +141,7 @@ public class Shop {
 		List<Shop> shopDelete = new ArrayList<>();
 
 		for(Shop shop1 : shops) {
-			if(shop1.hasExpired()) {
+			if(shop1.hasExpired() || shop1.location.getWorld() == null) {
 				shopDelete.add(shop1);
 				continue;
 			}
@@ -205,6 +205,10 @@ public class Shop {
 				int y = Integer.parseInt(locationRaw[1]);
 				int z = Integer.parseInt(locationRaw[2]);
 				World world = Bukkit.getWorld(locationRaw[3]);
+				if(world == null) {
+					continue;
+				}
+				
 				Location location = new Location(world, x, y, z);
 				
 				Optional<Shop> shop = Shop.getShopByLocation(location);
