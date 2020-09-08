@@ -2,7 +2,7 @@ name: TradingShops
 main: es.elzoo.tradingshops.TradingShops
 author: Chistian95
 website: https://elzoo.es
-version: "2.1.1"
+version: "2.1.2"
 api-version: "1.16"
 softdepend: [Vault, WorldGuard]
 commands:
